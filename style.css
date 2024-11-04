@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+body {
+    background-image: url('https://wallpaperaccess.com/full/271708.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+.container {
+    background-color: rgba(255, 255, 255, 0.8); 
+    width: 450px;
+    padding: 1.5rem;
+    margin: 50px auto;
+    border: 2px solid #575d52;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgb(3, 20, 3);
+}
+form{
+    margin:0 2rem;
+}
+.form-title {
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    padding: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+input{
+    color:inheret;
+    width:100%;
+    margin:0;
+}
+.input-group {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.forget {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.forget a {
+    color: #007bff;
+}
+
+.forget a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.btn {
+    width: 80%; 
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.8s;
+}
+
+.btn:hover {
+    background: #ccc;
+}
+
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
