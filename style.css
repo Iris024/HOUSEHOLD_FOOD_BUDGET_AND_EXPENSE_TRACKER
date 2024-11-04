@@ -61,7 +61,7 @@ input{
 }
 
 .forget a {
-    color: #007bff;
+    color: #1967bc;
 }
 
 .forget a:hover {
@@ -72,7 +72,7 @@ input{
 .btn {
     width: 80%; 
     padding: 10px;
-    background-color: #007bff;
+    background-color: #1b4775;
     color: white;
     border: none;
     outline: none;
