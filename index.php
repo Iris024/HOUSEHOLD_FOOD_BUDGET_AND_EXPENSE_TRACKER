@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body>]
     <div class="container" id="Register">
         <h1 class="form-title">REGISTRATION</h1>
         <form method="POST" action="register.php">
@@ -57,7 +57,7 @@
             <div class="input-group">
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Password</label>
+                <label for="password">Passwords</label>
             </div>
             <p class="forget">
                 <a href="#">Forget Password?</a>
