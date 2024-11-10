@@ -57,7 +57,7 @@
             <div class="input-group">
                 <i class="fas fa-lock"></i>
                 <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="password">Passwords</label>
+                <label for="password">Password</label>
             </div>
             <p class="forget">
                 <a href="#">Forget Password?</a>
