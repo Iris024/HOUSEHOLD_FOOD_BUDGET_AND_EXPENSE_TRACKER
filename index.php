@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration & Log-In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>]
     <div class="container" id="Register">
@@ -42,7 +44,7 @@
         </form>
         
         <div class="links">
-            <p>Already have an account? <button type="signInButton">Sign In</button></p>
+            <p>Already have an account? <button type="button" id="signInButton">Sign In</button></p>
         </div>
     </div>
 

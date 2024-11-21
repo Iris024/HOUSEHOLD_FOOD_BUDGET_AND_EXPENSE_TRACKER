@@ -1,11 +1,20 @@
 <?php
+class Database {
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $db_name = "tracker db";
+    public $conn;
 
-$host='localhost';
-$user='root';
-$pass='';
-$db='user authentication';
-$conn=new mysqli($host, $user, $pass, $db);
-if($conn->connect_error){
-    echo 'Failed to connect DB'.$conn->connect_error;
+    public function getConnect() {
+        $this->conn = null;
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
+
+        if ($this->conn->connect_error) {
+            echo "Failed to connect DB: " . $this->conn->connect_error;
+        }
+
+        return $this->conn;
+    }
 }
 ?>
