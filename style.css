@@ -6,34 +6,31 @@
 }
 
 body {
-    background-image: url('https://wallpaperaccess.com/full/271708.jpg') no-repeat;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url('https://wallpaperaccess.com/full/271708.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
     background-position: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     height: 100vh;
-    color: #fff;
-    display: block;
 }
-
-/* Registration & Login Form Styles */
 .container {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.8); 
     width: 400px;
     padding: 1rem;
     margin: 50px auto;
     border: 2px solid #575d52;
     border-radius: 10px;
-    box-shadow: 0 20px 35px rgba(3, 20, 3, 0.3);
+    box-shadow: 0 20px 35px rgb(3, 20, 3);
 }
-
 #Register {
     display: block;
 }
 
-form {
-    margin: 0 1rem;
+form{
+    margin:0 1rem;
 }
-
 .form-title {
     font-size: 2rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -43,13 +40,11 @@ form {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-input {
-    color: inherit;
-    width: 100%;
-    margin: 0;
+input{
+    color:inheret;
+    width:100%;
+    margin:0;
 }
-
 .input-group {
     text-align: center;
     margin-bottom: 10px;
@@ -67,7 +62,6 @@ input {
     border: 1px solid #ccc;
     margin-top: 1rem;
     border-radius: 5px;
-    font-size: 1rem;
 }
 
 .forget {
@@ -87,7 +81,7 @@ input {
 }
 
 .btn {
-    width: 80%;
+    width: 80%; 
     padding: 10px;
     background-color: #1b4775;
     color: white;
@@ -96,11 +90,18 @@ input {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    transition: 0.3s;
+    transition: 0.8s;
 }
 
 .btn:hover {
     background: #ccc;
+}
+
+.links {
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
 }
 
 /* Homepage Navigation */
@@ -126,8 +127,9 @@ nav .menu {
 .menu .logo a {
     text-decoration: none;
     color: #ffffff;
-    font-size: 35px;
+    font-size: 45px;
     font-weight: 600;
+    font-family: 'Lucida Handwriting', cursive;
 }
 
 .menu ul {
@@ -142,16 +144,16 @@ nav .menu {
 .menu ul li a {
     text-decoration: none;
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
-    background: transparent;
+    font-family: 'Courier New', Courier, monospace;
     padding: 8px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 
 .menu ul li a:hover {
-    background: #cfb9b9;
+    background: #f8f8f8;
     color: #000;
 }
 

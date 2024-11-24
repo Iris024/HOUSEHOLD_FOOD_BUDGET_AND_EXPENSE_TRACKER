@@ -20,6 +20,43 @@ class User {
         $this->conn = $db;
     }
 
+    public function setFullName($full_name) {
+        $this->full_name = htmlspecialchars($full_name);
+    }
+
+    public function setEmail($email) {
+        $this->email = htmlspecialchars($email);
+    }
+    public function setPhoneNumber($phone_number) {
+        $this->phone_number = htmlspecialchars($phone_number);
+    }
+    public function setUsername($username) {
+        $this->username = htmlspecialchars($username);
+    }
+    public function setPassword($password) {
+        $this->password = htmlspecialchars($password);
+    }
+
+    public function getFullName() {
+        return $this->full_name;
+    }
+
+    public function getemail() {
+        return $this->email;
+    }
+
+    public function getPhoneNumber() {
+        return $this->phone_number;
+    }
+
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
     public function create() {
         $query = "INSERT INTO " . $this->tbl_name . " (full_name, email, phone_number, username, password) 
                   VALUES (?, ?, ?, ?, ?)";
@@ -111,7 +148,7 @@ if (isset($_POST['register'])) {
                     icon: 'error'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = 'register.php';
+                        window.location.href = 'index.php';
                     }
                 });
             </script>
