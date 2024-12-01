@@ -29,7 +29,6 @@ $conn = $db->getConnect();
     </header>
 
     <div class="homepage-content">
-        <!-- Your homepage content goes here -->
     </div>
 </body>
 </html>
