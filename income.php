@@ -85,8 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($income->create()) {
             echo "<script>
                     alert('Income data successfully saved!');
-                    window.location.href = 'homepage.php'; // Redirect to homepage after success
-                  </script>";
+                    window.location.href = 'homepage.php';             
+                    </script>";
         } else {
             echo "<script>
                     alert('Failed to save income data. Please try again.');
