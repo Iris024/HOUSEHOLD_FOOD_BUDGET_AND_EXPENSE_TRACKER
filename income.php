@@ -2,12 +2,11 @@
 session_start();
 include 'connect.php';
 
-// Check if the user is logged in by verifying the session variable
 if (!isset($_SESSION['user_id'])) {
     echo "
     <script>
         alert('Please log in first.');
-        window.location.href = 'index.php'; // Redirect to login page if not logged in
+        window.location.href = 'index.php';
     </script>";
     exit();
 }
@@ -64,23 +63,18 @@ class Income {
     }
 }
 
-// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get user input from the form
     $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : null;
     $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
     $type = isset($_POST['type']) ? $_POST['type'] : null;
     $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : null;
     $description = isset($_POST['description']) ? $_POST['description'] : null;
 
-    // Get user_id from session
-    $user_id = $_SESSION['user_id']; // Assumed that user_id is set after login
+    $user_id = $_SESSION['user_id'];
 
-    // Check if all fields are filled
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
-        // Instantiate the Income class and set the values
         $income = new Income($conn);
         $income->setSourceName($source_name);
         $income->setAmount($amount);
@@ -89,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $income->setDescription($description);
         $income->setUserId($user_id);
 
-        // Insert the income data into the database
         if ($income->create()) {
             echo "<script>
                     alert('Income data successfully saved!');
