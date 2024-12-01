@@ -54,7 +54,6 @@ class Income {
     }
 
     public function create() {
-        // Prepare SQL query to insert the income data into the 'incomes' table
         $query = "INSERT INTO " . $this->tbl_name . " (source_name, amount, type, date_received, description, user_id) 
                   VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
