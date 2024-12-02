@@ -7,7 +7,7 @@
 
 /* Set the background image for the homepage */
 body {
-    background: url('https://i.pinimg.com/originals/08/9b/ce/089bce0b11f9a94c850061e14843f511.jpg') no-repeat center center fixed;
+    background: url('https://freshcorpfarms.com/wp-content/themes/freshcorpfarms/images/Freshcorp-Web-Background-1.jpg') no-repeat center center fixed;
     background-size: cover;
     margin-top: 60px; /* Add margin-top to prevent image from being blocked by the header */
 }

@@ -1,6 +1,7 @@
 <?php
 session_start();
-include("connect.php");
+require_once 'connect.php';
+require_once 'crudUser.php';
 
 $db = new Database();
 $conn = $db->getConnect();
@@ -12,24 +13,34 @@ $conn = $db->getConnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
+    <!-- Header Section -->
     <header>
-        <a href="#" class="logo">BudgetPLates</a>
+        <a href="#" class="logo"><i class="fas fa-coins"></i> BudgetPLates</a>
         <ul class="navbar">
-            <li><a href="home" class="home-active">Home</a></li>
-            <li><a href="income.php">Income</a></li>
+            <li><a href="homepage.php" class="home-active">Home</a></li>
+            <li><a href="manage_income.php">Income</a></li>
             <li><a href="budget.php">Budget</a></li>
-            <li><a href="emergency-finances.php">Emergency Finances</a></li>
+            <li><a href="manage_expenses.php">Expense</a></li>
+            <li><a href="emergency_finances.php">Emergency Finances</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="log-out.php">Log-out</a></li>
-            <li><a href="profile.php">Profile</a></li>
+            <li><a href="profile.php"><i class="fas fa-user"></i></a></li>
         </ul>
     </header>
 
-    <div class="homepage-content">
-        <!-- Your homepage content goes here -->
+    <!-- Main Homepage Content Section -->
+    <div class="container" id="Homepage">
+        <div class="homepage-content">
+            <h1>Welcome to BudgetPlates!</h1>
+            <p>Easily track your spending, plan meals, and stay on budget.</p>
+            <p>Manage your finances and enjoy smart, stress-free budgeting with us!</p>
+        </div>
     </div>
+
+    <!-- End of Body Content -->
 </body>
 </html>

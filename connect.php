@@ -1,17 +1,19 @@
 <?php
 class Database {
     private $host = "localhost";
+    private $db_name = "tracker_db";
     private $username = "root";
     private $password = "";
-    private $db_name = "tracker db";
     public $conn;
 
     public function getConnect() {
         $this->conn = null;
-        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
-        
-        if ($this->conn->connect_error) {
-            echo "Failed to connect DB: " . $this->conn->connect_error;
+
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
         }
 
         return $this->conn;

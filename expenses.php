@@ -15,15 +15,13 @@ if (!isset($_SESSION['user_id'])) {
 $db = new Database();
 $conn = $db->getConnect();
 
-class Income {
+class Expenses {
     private $conn;
-    private $tbl_name = "incomes";
+    private $tbl_name = "expenses";
 
-    public $id;
-    public $source_name;
+    public $budget_id;
     private $amount;
-    private $type;
-    public $date_received;
+    private $date_spent;
     public $description;
     public $user_id;
 
@@ -31,21 +29,16 @@ class Income {
         $this->conn = $db;
     }
 
-    // Setters
-    public function setSourceName($source_name) {
-        $this->source_name = htmlspecialchars($source_name);
+    public function setBudgetId($budget_id) {
+        $this->budget_id = htmlspecialchars($budget_id);
     }
 
     public function setAmount($amount) {
         $this->amount = htmlspecialchars($amount);
     }
 
-    public function setType($type) {
-        $this->type = htmlspecialchars($type);
-    }
-
-    public function setDateReceived($date_received) {
-        $this->date_received = htmlspecialchars($date_received);
+    public function setDateSpent($date_spent) {
+        $this->date_spent = htmlspecialchars($date_spent);
     }
 
     public function setDescription($description) {
@@ -56,32 +49,26 @@ class Income {
         $this->user_id = htmlspecialchars($user_id);
     }
 
-    public function setId($id) { 
-        $this->id = htmlspecialchars($id);
-    }
-
-    // Insert income data into the database
     public function create() {
-        $query = "INSERT INTO " . $this->tbl_name . " (source_name, amount, type, date_received, description, user_id) 
-                  VALUES (:source_name, :amount, :type, :date_received, :description, :user_id)";
+        // Prepare SQL query to insert the income data into the 'incomes' table
+        $query = "INSERT INTO " . $this->tbl_name . " (budget_id, amount,date_spent, description, user_id) 
+                  VALUES (:budget_id, :amount, :date_spent, :description, :user_id)";
 
         $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(':source_name', $this->source_name);
+    
+        $stmt->bindParam(':budget_id', $this->budget_id);
         $stmt->bindParam(':amount', $this->amount);
-        $stmt->bindParam(':type', $this->type);
-        $stmt->bindParam(':date_received', $this->date_received);
+        $stmt->bindParam(':date_spent', $this->date_spent);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':user_id', $this->user_id);
-
+    
         if ($stmt->execute()) {
-            return $this->conn->lastInsertId();
+            return true;
         }
-
+    
         return false;
     }
 
-    // Read all income data from the database
     public function read() {
         $query = "SELECT * FROM " . $this->tbl_name;
         $stmt = $this->conn->prepare($query);
@@ -89,39 +76,37 @@ class Income {
 
         return $stmt;
     }
+
 }
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get user input from the form
-    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-    $type = isset($_POST['type']) ? $_POST['type'] : '';
-    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
-    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $budget_id = isset($_POST['budget_id']) ? $_POST['budget_id'] : null;
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+    $date_spent = isset($_POST['date_spent']) ? $_POST['date_spent'] : null;
+    $description = isset($_POST['description']) ? $_POST['description'] : null;
 
     // Get user_id from session
     $user_id = $_SESSION['user_id']; // Assumed that user_id is set after login
 
     // Check if all fields are filled
-    if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
+    if (empty($budget_id) || empty($amount) || empty($date_spent) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
         // Instantiate the Income class and set the values
-        $income = new Income($conn);
-        $income->setSourceName($source_name);
-        $income->setAmount($amount);
-        $income->setType($type);
-        $income->setDateReceived($date_received);
-        $income->setDescription($description);
-        $income->setUserId($user_id);
+        $expenses = new Expenses($conn);
+        $expenses->setBudgetId($budget_id);
+        $expenses->setAmount($amount);
+        $expenses->setDateSpent($date_spent);
+        $expenses->setDescription($description);
+        $expenses->setUserId($user_id);
 
         // Insert the income data into the database
-        $income_id = $income->create();
-        if ($income_id) {
+        if ($income->create()) {
             echo "<script>
                     alert('Income data successfully saved!');
-                    window.location.href = 'manage_income.php'; // Redirect to homepage after success
+                    window.location.href = 'homepage.php'; // Redirect to homepage after success
                   </script>";
         } else {
             echo "<script>
