@@ -150,16 +150,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_price'])) {
 </head>
 <body>
 <header>
-    <a href="#" class="logo"><i class="fas fa-coins"></i> BudgetPLates</a>
-    <ul class="navbar">
-        <li><a href="homepage.php" class="home-active">Home</a></li>
-        <li><a href="manage_income.php">Income</a></li>
-        <li><a href="budget.php">Budget</a></li>
-        <li><a href="manage_expenses.php">Expense</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="profile.php"><i class="fas fa-user"></i></a></li>
-    </ul>
-</header>
+        <a href="#" class="logo"><i class="fas fa-coins"></i> BudgetPLates</a>
+        <ul class="navbar">
+            <li><a href="homepage.php" class="home-active">Home</a></li>
+            <li><a href="manage_income.php">Income</a></li>
+            <li><a href="budget.php">Budget</a></li>
+            <li><a href="manage_expenses.php">Expense</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="report.php">Report</a></li>
+        </ul>
+    </header>
 
 <h3>Items Added:</h3>
 <table id="itemTable" class="display">

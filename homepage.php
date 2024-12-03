@@ -21,6 +21,7 @@ session_start();
             <li><a href="budget.php">Budget</a></li>
             <li><a href="manage_expenses.php">Expense</a></li>
             <li><a href="about.php">About</a></li>
+            <li><a href="report.php">Report</a></li>
         </ul>
         <nav>
         <li>

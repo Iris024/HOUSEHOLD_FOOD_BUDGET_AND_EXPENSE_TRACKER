@@ -133,9 +133,9 @@ if (isset($_SESSION['budget'])) {
             <li><a href="homepage.php" class="home-active">Home</a></li>
             <li><a href="manage_income.php">Income</a></li>
             <li><a href="budget.php">Budget</a></li>
-            <li><a href="manage_expenses.php">Expense</a>
+            <li><a href="manage_expenses.php">Expense</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i></a></li>
+            <li><a href="report.php">Report</a></li>
         </ul>
     </header>
 
