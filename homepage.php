@@ -1,10 +1,5 @@
 <?php
 session_start();
-require_once 'connect.php';
-require_once 'crudUser.php';
-
-$db = new Database();
-$conn = $db->getConnect();
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +8,8 @@ $conn = $db->getConnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <link rel="stylesheet" href="homepage.css?v=1">
 </head>
 <body>
     <!-- Header Section -->
@@ -25,22 +20,43 @@ $conn = $db->getConnect();
             <li><a href="manage_income.php">Income</a></li>
             <li><a href="budget.php">Budget</a></li>
             <li><a href="manage_expenses.php">Expense</a></li>
-            <li><a href="emergency_finances.php">Emergency Finances</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="log-out.php">Log-out</a></li>
-            <li><a href="profile.php"><i class="fas fa-user"></i></a></li>
         </ul>
+        <nav>
+        <li>
+                <img src="https://images.rawpixel.com/image_png_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"  class="profile" alt=""></i>
+            <ul>
+                <i class="sub-item">
+                    <span class="material-icons-outlined">account</span>
+                    <p>Account</p>
+                </i>
+                <i class="sub-item">
+                    <span class="material-icons-outlined">dashboard</span>
+                    <p>Dashboard</p>
+                </i>
+                <i class="sub-item">
+                    <span class="material-icons-outlined">emergency</span>
+                    <p>Emergency Finances</p>
+                </i>
+                <i class="sub-item">
+                    <span class="material-icons-outlined">notification</span>
+                    <p>Notification</p>
+                </i>
+                <i class="sub-item">
+                    <span class="material-icons-outlined">logout</span>
+                    <p>Log-out</p>
+                </i>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Main Homepage Content Section -->
+    
     <div class="container" id="Homepage">
-        <div class="homepage-content">
-            <h1>Welcome to BudgetPlates!</h1>
-            <p>Easily track your spending, plan meals, and stay on budget.</p>
-            <p>Manage your finances and enjoy smart, stress-free budgeting with us!</p>
-        </div>
+    <div class="homepage-content">
+        <h1>Welcome to BudgetPlates!</h1>
+        <p>Easily track your spending, plan meals, and stay on budget.</p>
+        <p>Manage your finances and enjoy smart, stress-free budgeting with us!</p>
     </div>
+</div>
 
-    <!-- End of Body Content -->
 </body>
 </html>

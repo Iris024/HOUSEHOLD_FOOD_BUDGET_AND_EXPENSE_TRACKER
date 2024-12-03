@@ -107,26 +107,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
-        // Instantiate the Income class and set the values
-        $income = new Income($conn);
-        $income->setSourceName($source_name);
-        $income->setAmount($amount);
-        $income->setType($type);
-        $income->setDateReceived($date_received);
-        $income->setDescription($description);
-        $income->setUserId($user_id);
-
-        // Insert the income data into the database
-        $income_id = $income->create();
-        if ($income_id) {
+        // Validate that the selected date is not in the future
+        $current_date = date('Y-m-d'); // Get today's date
+        if ($date_received > $current_date) {
             echo "<script>
-                    alert('Income data successfully saved!');
-                    window.location.href = 'manage_income.php'; // Redirect to homepage after success
-                  </script>";
+             alert('The date cannot be in the future. Please select a valid date.');
+             window.location.href = 'manage_income.php';
+            </script>";
         } else {
-            echo "<script>
-                    alert('Failed to save income data. Please try again.');
-                  </script>";
+            // Instantiate the Income class and set the values
+            $income = new Income($conn);
+            $income->setSourceName($source_name);
+            $income->setAmount($amount);
+            $income->setType($type);
+            $income->setDateReceived($date_received);
+            $income->setDescription($description);
+            $income->setUserId($user_id);
+
+            // Insert the income data into the database
+            $income_id = $income->create();
+            if ($income_id) {
+                echo "<script>
+                        alert('Income data successfully saved!');
+                        window.location.href = 'manage_income.php'; // Redirect to homepage after success
+                      </script>";
+            } else {
+                echo "<script>
+                        alert('Failed to save income data. Please try again.');
+                      </script>";
+            }
         }
     }
 }

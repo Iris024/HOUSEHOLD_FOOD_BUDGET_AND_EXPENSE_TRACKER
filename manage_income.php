@@ -15,7 +15,7 @@
     <!-- SweetAlert2 JS --> 
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-     <link rel="stylesheet" href=".css?v=1.0">
+     <link rel="stylesheet" href="homepage.css?v=1.0">
      
     <script>
         $(document).ready(function() {
@@ -31,9 +31,7 @@
             <li><a href="manage_income.php">Income</a></li>
             <li><a href="budget.php">Budget</a></li>
             <li><a href="manage_expenses.php">Expense</a></li>
-            <li><a href="emergency-finances.php">Emergency Finances</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="log-out.php">Log-out</a></li>
             <li><a href="profile.php"><i class="fas fa-user"></i></a></li>
         </ul>
     </header>
