@@ -1,12 +1,12 @@
 <?php
 session_start();
-include 'connect.php';
+require_once 'connect.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo "
     <script>
         alert('Please log in first.');
-        window.location.href = 'index.php';
+        window.location.href = 'indexReg.php';
     </script>";
     exit();
 }
@@ -18,6 +18,7 @@ class Income {
     private $conn;
     private $tbl_name = "incomes";
 
+    public $id;
     public $source_name;
     private $amount;
     private $type;
@@ -53,76 +54,78 @@ class Income {
         $this->user_id = htmlspecialchars($user_id);
     }
 
+    public function setId($id) { 
+        $this->id = htmlspecialchars($id);
+    }
+
     public function create() {
         $query = "INSERT INTO " . $this->tbl_name . " (source_name, amount, type, date_received, description, user_id) 
-                  VALUES (?, ?, ?, ?, ?, ?)";
+                  VALUES (:source_name, :amount, :type, :date_received, :description, :user_id)";
+
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssssss', $this->source_name, $this->amount, $this->type, $this->date_received, $this->description, $this->user_id);
-        return $stmt->execute();
+
+        $stmt->bindParam(':source_name', $this->source_name);
+        $stmt->bindParam(':amount', $this->amount);
+        $stmt->bindParam(':type', $this->type);
+        $stmt->bindParam(':date_received', $this->date_received);
+        $stmt->bindParam(':description', $this->description);
+        $stmt->bindParam(':user_id', $this->user_id);
+
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+
+        return false;
+    }
+
+    public function read() {
+        $query = "SELECT * FROM " . $this->tbl_name;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : null;
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
-    $type = isset($_POST['type']) ? $_POST['type'] : null;
-    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : null;
-    $description = isset($_POST['description']) ? $_POST['description'] : null;
-
+    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
+    $type = isset($_POST['type']) ? $_POST['type'] : '';
+    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
+    $description = isset($_POST['description']) ? $_POST['description'] : '';
+  
     $user_id = $_SESSION['user_id'];
 
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
-        $income = new Income($conn);
-        $income->setSourceName($source_name);
-        $income->setAmount($amount);
-        $income->setType($type);
-        $income->setDateReceived($date_received);
-        $income->setDescription($description);
-        $income->setUserId($user_id);
-
-        if ($income->create()) {
+        $current_date = date('Y-m-d');
+        if ($date_received > $current_date) {
             echo "<script>
-                    alert('Income data successfully saved!');
-                    window.location.href = 'homepage.php';             
-                    </script>";
+             alert('The date cannot be in the future. Please select a valid date.');
+             window.location.href = 'manage_income.php';
+            </script>";
         } else {
-            echo "<script>
-                    alert('Failed to save income data. Please try again.');
-                  </script>";
+            $income = new Income($conn);
+            $income->setSourceName($source_name);
+            $income->setAmount($amount);
+            $income->setType($type);
+            $income->setDateReceived($date_received);
+            $income->setDescription($description);
+            $income->setUserId($user_id);
+
+            $income_id = $income->create();
+            if ($income_id) {
+                echo "<script>
+                        alert('Income data successfully saved!');
+                        window.location.href = 'manage_income.php'; // Redirect to homepage after success
+                      </script>";
+            } else {
+                echo "<script>
+                        alert('Failed to save income data. Please try again.');
+                      </script>";
+            }
         }
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Income Details</title>
-</head>
-<body>
-    <h1>Submit Your Income Details</h1>
-    <!-- Use POST method for form submission -->
-    <form method="POST" action="">
-        <label for="source_name">Source Name:</label>
-        <input type="text" name="source_name" id="source_name" placeholder="Source Name" required>
-
-        <label for="amount">Amount:</label>
-        <input type="number" name="amount" id="amount" placeholder="Amount" required>
-
-        <label for="type">Income Type:</label>
-        <input type="text" name="type" id="type" placeholder="Type (e.g., Weekly)" required>
-
-        <label for="date_received">Date Received:</label>
-        <input type="date" name="date_received" id="date_received" required>
-
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" placeholder="Description" required></textarea>
-
-        <button type="submit">Submit Income</button>
-    </form>
-</body>
-</html>

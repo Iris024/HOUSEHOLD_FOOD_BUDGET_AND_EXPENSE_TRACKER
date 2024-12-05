@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+body {
+    background: url('https://freshcorpfarms.com/wp-content/themes/freshcorpfarms/images/Freshcorp-Web-Background-1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin-top: 200px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    padding: 25px 0;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 600;
+    font-family: 'Lucida Handwriting', cursive;
+    letter-spacing: 2px;
+}
+
+ul.navbar {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+ul.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: color 0.3s, padding 0.3s;
+    border-radius: 5px;
+}
+
+ul.navbar li a:hover {
+    color: #ff9f00;
+    padding: 12px 18px;
+}
+
+.home-active {
+    color: #ff9f00;
+    font-weight: 600%;
+}
+
+/* Receipt container styles */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.receipt-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.receipt-container h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.main-content .receipt-container:first-of-type {
+    margin-bottom: 40px; /* Add a larger bottom margin */
+}
+
+.main-content .receipt-container:nth-of-type(2) {
+    margin-bottom: 30px; /* Add margin at the bottom of "Add an Item" */
+}
+
+.receipt-container h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.receipt-container input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.receipt-container button {
+    width: 50%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.receipt-container button:hover {
+    background-color: #45a049;
+}
+
+/* Items section */
+.items-added-section {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.items-added-section table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.items-added-section table.simple-table caption {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px; 
+    color: #333;
+    text-align: center;
+}
+
+.items-added-section table th, .items-added-section table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.items-added-section table th {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.items-added-section table tfoot td {
+    font-weight: bold;
+}
+
+/* Clear Items Button */
+.clear-btn {
+    text-align: center;
+}
+
+.clear-btn button {
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.clear-btn button:hover {
+    background-color: #45a049;
+}

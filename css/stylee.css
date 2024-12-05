@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+body {
+    background: url('https://freshcorpfarms.com/wp-content/themes/freshcorpfarms/images/Freshcorp-Web-Background-1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 16px;
+    margin-top: 0;
+    padding-top: 80px; /* Adjusted to prevent overlap with fixed header */
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    padding: 25px 0;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 600;
+    font-family: 'Lucida Handwriting', cursive;
+    letter-spacing: 2px;
+}
+
+ul.navbar {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+ul.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: color 0.3s, padding 0.3s;
+    border-radius: 5px;
+}
+
+ul.navbar li a:hover {
+    color: #ff9f00;
+    padding: 12px 18px;
+}
+
+.home-active {
+    color: #ff9f00;
+    font-weight: 600;
+}
+
+/* Main content container */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 150px; /* Ensure proper space below header */
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Budget Info Section */
+.budget-info {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.budget-info caption {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+}
+
+.budget-info table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.budget-info th, .budget-info td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.budget-info th {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.budget-info tfoot td {
+    font-weight: bold;
+}
+
+/* Buttons Section */
+.clear-btn {
+    text-align: center;
+}
+
+.clear-btn button {
+    padding: 12px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.clear-btn button:hover {
+    background-color: #45a049;
+}
