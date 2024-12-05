@@ -88,13 +88,12 @@ class Income {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
     $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
     $type = isset($_POST['type']) ? $_POST['type'] : '';
     $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
     $description = isset($_POST['description']) ? $_POST['description'] : '';
-
+  
     $user_id = $_SESSION['user_id'];
 
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
