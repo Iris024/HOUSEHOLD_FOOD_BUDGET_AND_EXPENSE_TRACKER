@@ -32,12 +32,11 @@ session_start();
             </li>
         </ul>
     </header>
-    
+
     <div class="container" id="Homepage">
         <div class="homepage-content">
             <h1>Welcome to BudgetPlates!</h1>
             <p>Easily track your spending, plan meals, and stay on budget. Manage your finances and enjoy smart, stress-free budgeting with us!</p>
-        </div>
     </div>
 </body>
 </html>

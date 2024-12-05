@@ -6,7 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     echo "
     <script>
         alert('Please log in first.');
-        window.location.href = 'indexReg.php';
     </script>";
     exit();
 }
@@ -88,15 +87,15 @@ class Income {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : null;
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+    $type = isset($_POST['type']) ? $_POST['type'] : null;
+    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : null;
+    $description = isset($_POST['description']) ? $_POST['description'] : null;
 
-    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-    $type = isset($_POST['type']) ? $_POST['type'] : '';
-    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
-    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $user_id = $_SESSION['user_id']; // Assumed that user_id is set after login
 
-    $user_id = $_SESSION['user_id'];
-
+    // Check if all fields are filled
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
@@ -107,15 +106,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              window.location.href = 'manage_income.php';
             </script>";
         } else {
-            $income = new Income($conn);
-            $income->setSourceName($source_name);
-            $income->setAmount($amount);
-            $income->setType($type);
-            $income->setDateReceived($date_received);
-            $income->setDescription($description);
-            $income->setUserId($user_id);
+        $income = new Income($conn);
+        $income->setSourceName($source_name);
+        $income->setAmount($amount);
+        $income->setType($type);
+        $income->setDateReceived($date_received);
+        $income->setDescription($description);
+        $income->setUserId($user_id);
 
-            $income_id = $income->create();
+        $income_id = $income->create();
             if ($income_id) {
                 echo "<script>
                         alert('Income data successfully saved!');
