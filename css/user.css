@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+/* Set the background image for the homepage */
+body {
+    background: url('https://freshcorpfarms.com/wp-content/themes/freshcorpfarms/images/Freshcorp-Web-Background-1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin-top: 60px; /* Add margin-top to prevent image from being blocked by the header */
+}
+
+/* Ensure the header stays on top */
+header {
+    background-color: rgba(0, 0, 0, 0.7); /* Make the header slightly transparent */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure the header stays on top of other content */
+}
+
+/* Logo */
+header .logo {
+    padding: 25px 0;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 600;
+    font-family: 'Lucida Handwriting', cursive;
+}
+
+/* Navbar styling */
+ul.navbar {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+ul.navbar li {
+    display: inline;
+}
+
+ul.navbar li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+ul.navbar li a:hover {
+    color: #ff9f00;
+}
+
+/* Main homepage content */
+.homepage-content {
+    padding-top: 100px; /* Prevent content from being hidden under the fixed header */
+    text-align: center;
+    color: white;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); 
+    width: 400px;
+    padding: 1rem;
+    margin: 50px auto;
+    border: 2px solid #575d52;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgb(3, 20, 3);
+}
+
+#Register {
+    display: block;
+}
+
+form {
+    margin: 0 1rem;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    padding: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    color: inherit;
+    width: 100%;
+    margin: 0;
+}
+
+.input-group {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.forget {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.forget a {
+    color: #1967bc;
+}
+
+.forget a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.btn {
+    width: 80%; 
+    padding: 10px;
+    background-color: #1b4775;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.8s;
+}
+
+.btn:hover {
+    background: #ccc;
+}
+
+.links {
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+}

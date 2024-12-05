@@ -15,7 +15,7 @@
     <!-- SweetAlert2 JS --> 
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-     <link rel="stylesheet" href="homepage.css?v=1.0">
+     <link rel="stylesheet" href="style.css?v=1.0">
      
     <script>
         $(document).ready(function() {
@@ -30,36 +30,56 @@
             <li><a href="homepage.php" class="home-active">Home</a></li>
             <li><a href="manage_income.php">Income</a></li>
             <li><a href="budget.php">Budget</a></li>
-            <li><a href="manage_expenses.php">Expense</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="report.php">Report</a></li>
         </ul>
     </header>
 
-    <div class="container" id="Income">;
+    <div class="container" id="Income">
     <h2>Income Details</h2>
-    <form method="POST" action="income.php">
-        Source Name: <input type="text" name="source_name" required>
-        <br><br>
-        Amount: <input type="text" name="amount" required>
-        <br><br>
-        Income Type: <select name="type" id="type" required>
-            <option value="" disabled selected>Select Income Type</option>
-            <option value="one-time">One-time</option>
-            <option value="weekly">Weekly</option>
-            <option value="monthly">Monthly</option>
-            <option value="other">Other</option>
-        </select>
-        <br><br>
-        Date Received: <input type="date" name="date_received" required>
-        <br><br>
-        Description: <input type="text" name="description" required>
-        <br><br>
-        <input type="submit" value="Create" required>
-    </form>
+    <div class="receipt-container">
+        <form method="POST" action="income.php">
+            <div class="form-item">
+                <label for="source_name">Source Name:</label>
+                <input type="text" name="source_name" id="source_name" required>
+            </div>
 
-    <h2>Incomes List</h2>
+            <div class="form-item">
+                <label for="amount">Amount:</label>
+                <input type="text" name="amount" id="amount" required>
+            </div>
+
+            <div class="form-item">
+                <label for="type">Income Type:</label>
+                <select name="type" id="type" required>
+                    <option value="" disabled selected>Select Income Type</option>
+                    <option value="one-time">One-time</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-item">
+                <label for="date_received">Date Received:</label>
+                <input type="date" name="date_received" id="date_received" required>
+            </div>
+
+            <div class="form-item">
+                <label for="description">Description:</label>
+                <input type="text" name="description" id="description" required>
+            </div>
+
+            <div class="form-item">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div class="table-container">
     <table id="incomeTable" class="display">
+        <caption>Incomes List</caption>
         <thead>
             <tr>
                 <th>ID</th>
@@ -94,11 +114,9 @@
                     echo "</tr>";
                 }
             }
-
             ?>
-   
         </tbody>
     </table>
-
+    </div>
 </body>
 </html>

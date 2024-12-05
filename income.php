@@ -2,12 +2,11 @@
 session_start();
 require_once 'connect.php';
 
-// Check if the user is logged in by verifying the session variable
 if (!isset($_SESSION['user_id'])) {
     echo "
     <script>
         alert('Please log in first.');
-        window.location.href = 'indexReg.php'; // Redirect to login page if not logged in
+        window.location.href = 'indexReg.php';
     </script>";
     exit();
 }
@@ -31,7 +30,6 @@ class Income {
         $this->conn = $db;
     }
 
-    // Setters
     public function setSourceName($source_name) {
         $this->source_name = htmlspecialchars($source_name);
     }
@@ -60,7 +58,6 @@ class Income {
         $this->id = htmlspecialchars($id);
     }
 
-    // Insert income data into the database
     public function create() {
         $query = "INSERT INTO " . $this->tbl_name . " (source_name, amount, type, date_received, description, user_id) 
                   VALUES (:source_name, :amount, :type, :date_received, :description, :user_id)";
@@ -81,7 +78,6 @@ class Income {
         return false;
     }
 
-    // Read all income data from the database
     public function read() {
         $query = "SELECT * FROM " . $this->tbl_name;
         $stmt = $this->conn->prepare($query);
@@ -91,31 +87,26 @@ class Income {
     }
 }
 
-// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get user input from the form
+
     $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
     $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
     $type = isset($_POST['type']) ? $_POST['type'] : '';
     $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
     $description = isset($_POST['description']) ? $_POST['description'] : '';
 
-    // Get user_id from session
-    $user_id = $_SESSION['user_id']; // Assumed that user_id is set after login
+    $user_id = $_SESSION['user_id'];
 
-    // Check if all fields are filled
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
-        // Validate that the selected date is not in the future
-        $current_date = date('Y-m-d'); // Get today's date
+        $current_date = date('Y-m-d');
         if ($date_received > $current_date) {
             echo "<script>
              alert('The date cannot be in the future. Please select a valid date.');
              window.location.href = 'manage_income.php';
             </script>";
         } else {
-            // Instantiate the Income class and set the values
             $income = new Income($conn);
             $income->setSourceName($source_name);
             $income->setAmount($amount);
@@ -124,7 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $income->setDescription($description);
             $income->setUserId($user_id);
 
-            // Insert the income data into the database
             $income_id = $income->create();
             if ($income_id) {
                 echo "<script>
