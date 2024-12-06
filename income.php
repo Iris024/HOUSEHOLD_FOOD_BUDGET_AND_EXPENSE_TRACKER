@@ -16,7 +16,7 @@ $conn = $db->getConnect();
 
 class Income {
     private $conn;
-    private $tbl_name = "incomes";
+    public $tbl_name = "incomes";
 
     public $id;
     public $source_name;
@@ -88,11 +88,11 @@ class Income {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : '';
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-    $type = isset($_POST['type']) ? $_POST['type'] : '';
-    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : '';
-    $description = isset($_POST['description']) ? $_POST['description'] : '';
+    $source_name = isset($_POST['source_name']) ? $_POST['source_name'] : null;
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+    $type = isset($_POST['type']) ? $_POST['type'] : null;
+    $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : null;
+    $description = isset($_POST['description']) ? $_POST['description'] : null;
   
     $user_id = $_SESSION['user_id'];
 
@@ -106,13 +106,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              window.location.href = 'manage_income.php';
             </script>";
         } else {
-            $income = new Income($conn);
-            $income->setSourceName($source_name);
-            $income->setAmount($amount);
-            $income->setType($type);
-            $income->setDateReceived($date_received);
-            $income->setDescription($description);
-            $income->setUserId($user_id);
+        $income = new Income($conn);
+        $income->setSourceName($source_name);
+        $income->setAmount($amount);
+        $income->setType($type);
+        $income->setDateReceived($date_received);
+        $income->setDescription($description);
+        $income->setUserId($user_id);
 
             $income_id = $income->create();
             if ($income_id) {

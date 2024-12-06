@@ -1,10 +1,8 @@
 <?php
-// Include necessary files
 require_once 'connect.php';
 require_once 'income.php';
 require_once 'notif.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     echo "<script>alert('Please log in to view your messages.');</script>";
     exit();
@@ -13,19 +11,15 @@ if (!isset($_SESSION['user_id'])) {
 $database = new Database();
 $db = $database->getConnect();
 
-// Get the logged-in user's ID from the session
 $user_id = $_SESSION['user_id'];
 
-// Create an Income object
 $income = new Income($db);
 
-// Modify the query to get only records for the logged-in user
 $query = "SELECT * FROM " . $income->tbl_name . " WHERE user_id = :user_id";
 $stmt = $db->prepare($query);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 
-// Get the number of rows
 $num = $stmt->rowCount();
 ?>
 

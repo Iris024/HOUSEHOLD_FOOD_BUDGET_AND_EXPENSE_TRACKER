@@ -20,7 +20,7 @@ $db = $database->getConnect();
 <body>
     <div class="container" id="Log-In">
         <h1 class="form-title">LOG-IN</h1>
-        <form method="POST" action="loginUser.php"> <!-- Make sure loginUser.php is correct -->
+        <form method="POST" action="loginUser.php">
             <div class="input-group">
                 <i class="fas fa-user"></i>
                 <input type="text" name="username" id="username" placeholder="Username" required>
