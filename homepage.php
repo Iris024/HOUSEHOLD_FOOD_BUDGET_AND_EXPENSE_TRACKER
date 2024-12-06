@@ -23,7 +23,7 @@ session_start();
             <li class="dropdown">
             <a href="#" class="dropdown-icon"><i class="fas fa-user-circle"></i></a>
             <ul class="dropdown-menu">
-                <li><a href="manage_notif.php"><i class="fas fa-bell"></i> Notification</a></li>
+                <li><a href="manage_notif.php"><i class="fas fa-bell"></i> Messages</a></li>
                 <li><a href="mood.php"><i class="fas fa-meh"></i> Mood</a></li>
                 <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> Log-out</a></li>
             </ul>
