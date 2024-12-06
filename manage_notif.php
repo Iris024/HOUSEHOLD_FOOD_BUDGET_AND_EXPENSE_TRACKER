@@ -13,10 +13,8 @@ $db = $database->getConnect();
 
 $user_id = $_SESSION['user_id'];
 
-// Get the current time
 $current_time = time();
 
-// Fetching income data
 $income = new Income($db);
 $query = "SELECT * FROM " . $income->tbl_name . " WHERE user_id = :user_id";
 $stmt = $db->prepare($query);
@@ -25,7 +23,6 @@ $stmt->execute();
 
 $num = $stmt->rowCount();
 
-// Fetching budget data
 $query_budget = "SELECT * FROM budgets WHERE user_id = :user_id";
 $stmt_budget = $db->prepare($query_budget);
 $stmt_budget->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -57,7 +54,6 @@ $num_budget = $stmt_budget->rowCount();
 <div class="container" id="Income">
     <h2>Messages</h2>
     <?php
-    // Displaying income messages
     if ($num > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $source_name = htmlspecialchars($row['source_name']);
@@ -108,6 +104,5 @@ $num_budget = $stmt_budget->rowCount();
     }
     ?>
 </div>
-
 </body>
 </html>
