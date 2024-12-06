@@ -28,6 +28,11 @@ class Notification extends Income {
     }
 
     public function createIncome($source_name, $amount, $type, $date_received, $description, $user_id) {
+        if (empty($source_name) || !is_numeric($amount) || $amount <= 0 || empty($date_received)) {
+            $this->setNotification('Invalid input data!', 'error');
+            return false;
+        }
+        
         $this->setSourceName($source_name);
         $this->setAmount($amount);
         $this->setType($type);
