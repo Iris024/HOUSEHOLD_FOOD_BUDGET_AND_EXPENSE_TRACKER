@@ -15,7 +15,7 @@ $conn = $db->getConnect();
 
 class Income {
     private $conn;
-    private $tbl_name = "incomes";
+    public $tbl_name = "incomes";
 
     public $id;
     public $source_name;
@@ -93,9 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_received = isset($_POST['date_received']) ? $_POST['date_received'] : null;
     $description = isset($_POST['description']) ? $_POST['description'] : null;
 
-    $user_id = $_SESSION['user_id']; // Assumed that user_id is set after login
+    $user_id = $_SESSION['user_id'];
 
-    // Check if all fields are filled
     if (empty($source_name) || empty($amount) || empty($type) || empty($date_received) || empty($description)) {
         echo "<script>alert('All fields are required.');</script>";
     } else {
