@@ -16,7 +16,7 @@ $user_id = $_SESSION['user_id'];
 $current_time = time();
 
 $income = new Income($db);
-$query = "SELECT * FROM " . $income->tbl_name . " WHERE user_id = :user_id";
+$query = "SELECT * FROM " . $income->getTableName() . " WHERE user_id = :user_id";
 $stmt = $db->prepare($query);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
