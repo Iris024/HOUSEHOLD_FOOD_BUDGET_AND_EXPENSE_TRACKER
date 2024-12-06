@@ -16,7 +16,7 @@ $conn = $db->getConnect();
 
 class Income {
     private $conn;
-    private $tbl_name = "incomes";
+    protected $tbl_name = "incomes";
 
     private $id;
     private $source_name;
@@ -86,8 +86,12 @@ class Income {
         $this->user_id = htmlspecialchars($user_id);
     }
 
+    public function getTableName() {
+        return $this->tbl_name;
+    }
+    
     public function create() {
-        $query = "INSERT INTO " . $this->tbl_name . " (source_name, amount, type, date_received, description, user_id) 
+        $query = "INSERT INTO " . $this->getTableName() . " (source_name, amount, type, date_received, description, user_id) 
                   VALUES (:source_name, :amount, :type, :date_received, :description, :user_id)";
 
         $stmt = $this->conn->prepare($query);
