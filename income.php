@@ -16,46 +16,74 @@ $conn = $db->getConnect();
 
 class Income {
     private $conn;
-    public $tbl_name = "incomes";
+    private $tbl_name = "incomes";
 
-    public $id;
-    public $source_name;
+    private $id;
+    private $source_name;
     private $amount;
     private $type;
-    public $date_received;
-    public $description;
-    public $user_id;
+    private $date_received;
+    private $description;
+    private $user_id;
 
     public function __construct($db) {
         $this->conn = $db;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getSourceName() {
+        return $this->source_name;
     }
 
     public function setSourceName($source_name) {
         $this->source_name = htmlspecialchars($source_name);
     }
 
+    public function getAmount() {
+        return $this->amount;
+    }
+
     public function setAmount($amount) {
-        $this->amount = htmlspecialchars($amount);
+        if (is_numeric($amount) && $amount > 0) {
+            $this->amount = htmlspecialchars($amount);
+        } else {
+            throw new Exception("Invalid amount");
+        }
+    }
+
+    public function getType() {
+        return $this->type;
     }
 
     public function setType($type) {
         $this->type = htmlspecialchars($type);
     }
 
+    public function getDateReceived() {
+        return $this->date_received;
+    }
+
     public function setDateReceived($date_received) {
         $this->date_received = htmlspecialchars($date_received);
+    }
+
+    public function getDescription() {
+        return $this->description;
     }
 
     public function setDescription($description) {
         $this->description = htmlspecialchars($description);
     }
 
-    public function setUserId($user_id) {
-        $this->user_id = htmlspecialchars($user_id);
+    public function getUserId() {
+        return $this->user_id;
     }
 
-    public function setId($id) { 
-        $this->id = htmlspecialchars($id);
+    public function setUserId($user_id) {
+        $this->user_id = htmlspecialchars($user_id);
     }
 
     public function create() {
