@@ -13,14 +13,24 @@ $db = $database->getConnect();
 
 $user_id = $_SESSION['user_id'];
 
-$income = new Income($db);
+// Get the current time
+$current_time = time();
 
+// Fetching income data
+$income = new Income($db);
 $query = "SELECT * FROM " . $income->tbl_name . " WHERE user_id = :user_id";
 $stmt = $db->prepare($query);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 
 $num = $stmt->rowCount();
+
+// Fetching budget data
+$query_budget = "SELECT * FROM budgets WHERE user_id = :user_id";
+$stmt_budget = $db->prepare($query_budget);
+$stmt_budget->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt_budget->execute();
+$num_budget = $stmt_budget->rowCount();
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +57,7 @@ $num = $stmt->rowCount();
 <div class="container" id="Income">
     <h2>Messages</h2>
     <?php
+    // Displaying income messages
     if ($num > 0) {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $source_name = htmlspecialchars($row['source_name']);
@@ -60,7 +71,40 @@ $num = $stmt->rowCount();
             echo "</div>";
         }
     } else {
-        echo "<p>No messages found.</p>";
+        echo "<p>No messages found for your income.</p>";
+    }
+    ?>
+    
+    <?php
+    $valid_budgets = [];
+    $unique_budget = null;
+    $item_prices = []; 
+
+    if ($num_budget > 0) {
+        while ($row_budget = $stmt_budget->fetch(PDO::FETCH_ASSOC)) {
+            $item = htmlspecialchars($row_budget['item']);
+            $price = htmlspecialchars($row_budget['price']);
+            $budget = htmlspecialchars($row_budget['budget']);
+            $added_at = strtotime($row_budget['added_at']);
+
+            if (($current_time - $added_at) <= 86400) {
+                if ($unique_budget === null) {
+                    $unique_budget = $budget;
+                }
+
+                $item_prices[] = "<strong>{$item}</strong> (₱" . number_format($price, 2) . ")";
+            }
+        }
+        
+        if (count($item_prices) > 0) {
+            echo "<div class='budget-message'>";
+            echo "<p>You have added items with a total budget of ₱" . number_format($unique_budget, 2) . " within the last 24 hours. These items include: " . implode(", ", $item_prices) . ".</p>";
+            echo "</div>";
+        } else {
+            echo "<p>No budgets were added within the last 24 hours.</p>";
+        }
+    } else {
+        echo "<p>No budget items found for your account.</p>";
     }
     ?>
 </div>
