@@ -1,19 +1,17 @@
 <?php
-// Database connection settings
+session_start();
+
 $host = 'localhost';
 $dbname = 'tracker_db';
 $username = 'root';
 $password = '';
 
 try {
-    // Connect to MySQL using PDO
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
 }
-
-session_start();
 
 $budget = 0;
 $remainingBudget = 0;
@@ -106,9 +104,6 @@ if (isset($_SESSION['budget'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>Budget Tracker</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
