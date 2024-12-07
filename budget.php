@@ -35,7 +35,7 @@ if ($row_income) {
     $totalIncome = $row_income['amount']; 
     $income_id = $row_income['id'];       
 } else {
-    echo "<script>alert('No income found for this user.');</script>";
+    echo "<script>alert('No income found for this user.'); window.location.href = 'manage_income.php';</script>";
     exit;
 }
 
